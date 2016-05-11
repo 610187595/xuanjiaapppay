@@ -7,9 +7,9 @@
 //
 
 #import "ViewController.h"
-
+#import "AllPayViewController.h"
 @interface ViewController ()
-
+@property (strong, nonatomic) IBOutlet UITextField *peicrText;
 @end
 
 @implementation ViewController
@@ -17,6 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+- (IBAction)payClick:(id)sender
+{
+    AllPayViewController *avc=[AllPayViewController sharedManager];
+    [self.navigationController pushViewController:avc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
