@@ -5,7 +5,8 @@
 //  Created by 薛泽军 on 16/4/29.
 //  Copyright © 2016年 炫嘉科技. All rights reserved.
 //
-#define kURL_TN_Configure             @"http://101.231.204.84:8091/sim/app.jsp?user=123456789"
+
+#define kURL_TN_Configure    @"http://101.231.204.84:8091/sim/getacptn"
 
 
 
@@ -24,12 +25,14 @@
 #import "UPPaymentControl.h"
 #import "UPAPayPluginDelegate.h"
 #import "UPAPayPlugin.h"
+#import "xuanjiaallpay-Swift.h" //使用swift混编时为项目名称＋“－Swift.h” 写完会报错不要担心等一会就好了
 @interface AllPayViewController ()<UITableViewDataSource,UITableViewDelegate,BDWalletSDKMainManagerDelegate,UPAPayPluginDelegate>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)NSMutableArray *dataArray;
 @property (strong,nonatomic)AllPayModel *allpay;
 @property (strong,nonatomic)NSMutableData *responseData;
 @property (nonatomic)NSInteger tn;
+@property (strong,nonatomic)MLProgressHUD *mlHUD;
 
 @end
 
@@ -85,21 +88,23 @@
             [self AliPay];
             break;
         case 1:
+            _mlHUD=[[MLProgressHUD alloc]initWithMessage:@"微信支付啦"];
             [self weiChatPay];
             break;
         case 2:
 //            [self apppay];
         {
-            self.tn=1;
+            self.tn=0;
             [self startNetWithURL:[NSURL URLWithString:kURL_TN_Configure]];
         }
             break;
         case 3:
+            _mlHUD=[[MLProgressHUD alloc]initWithMessage:@"微信支付啦"];
             [self baiduPay];
             break;
         case 4:
         {
-            self.tn=0;
+            self.tn=1;
             [self startNetWithURL:[NSURL URLWithString:kURL_TN_Configure]];
         }
             break;
@@ -197,6 +202,7 @@
         NSMutableDictionary *dict = NULL;
         //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
         dict = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+        [_mlHUD dismiss];
         NSLog(@"url:%@",urlString);
         if(dict != nil){
             NSMutableString *retcode = [dict objectForKey:@"retcode"];
@@ -294,7 +300,7 @@
 #pragma mark 银联支付请求
 - (void)yinlianPayWith:(NSString *)tn
 {
-    [[UPPaymentControl defaultControl] startPay:tn fromScheme:@"UPPayDemo" mode:@"01" viewController:self];
+    [[UPPaymentControl defaultControl] startPay:tn fromScheme:@"alipayxuanjia" mode:@"01" viewController:self];
 }
 #pragma mark 银联apppay
 - (void)apppayWithTn:(NSString *)tn
@@ -373,6 +379,7 @@
     NSLog(@"baidu~~%@",order);
 //    [self initNavigationController];
     // 注：rootVC 与Delegate 需要匹配设置
+    [_mlHUD dismiss];
     BDWalletSDKMainManager* payMainManager = [BDWalletSDKMainManager getInstance];
     [payMainManager setDelegate:self];
     [payMainManager setRootViewController:self];

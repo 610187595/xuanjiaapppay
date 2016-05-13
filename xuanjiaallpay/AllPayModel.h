@@ -17,7 +17,7 @@
 //百度因为使用的是嵌入式无需跳转 比较起来百度的开发人员水平太菜
 
 //apppay支付时的merantId 如果你研究过就知道时什么
-#define kAppleMerchantID @""
+#define kAppleMerchantID @"merchant.com.bxkj.applePayDemo"
 
 #import <Foundation/Foundation.h>
 
