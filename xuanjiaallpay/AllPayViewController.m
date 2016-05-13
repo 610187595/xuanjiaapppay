@@ -50,7 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.allpay=[AllPayModel new];
-    self.allpay.orderNmuber=@"13123213123213123";
+    self.allpay.orderNmuber=@"13123213123213123111";
     self.allpay.subject=@"有人支付测试啦 大家躲远点";
     self.allpay.body=@"请话一分钱";
     self.allpay.price=0.01;//一分钱
@@ -150,7 +150,7 @@
     order.showURL = @"alipayxuanjia";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"alisdkdemo";
+    NSString *appScheme = ALIPAYSCHEME;
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
@@ -170,10 +170,12 @@
             NSLog(@"reslut = %@",resultDic);
             if ([resultDic[@"resultStatus"] intValue]==9000)
             {
-                self.allPayBlock(resultDic,YES);
+                //支付成功
+//                self.allPayBlock(resultDic,YES);
             }else
             {
-                self.allPayBlock(resultDic,NO);
+                //支付不成功
+//                self.allPayBlock(resultDic,NO);
             }
             
         }];
