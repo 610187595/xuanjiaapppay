@@ -401,14 +401,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				363EBE951CD3509300C740A2 /* Security.framework in Frameworks */,
+				363EBF511CD36D7600C740A2 /* LocalAuthentication.framework in Frameworks */,
 				36529FB41CE58A360036D6B3 /* PassKit.framework in Frameworks */,
 				36529FB21CE58A2B0036D6B3 /* Contacts.framework in Frameworks */,
 				363EBE7F1CD34AE200C740A2 /* CFNetwork.framework in Frameworks */,
 				363EBE811CD34AEE00C740A2 /* SystemConfiguration.framework in Frameworks */,
-				363EBF511CD36D7600C740A2 /* LocalAuthentication.framework in Frameworks */,
 				363EBF4F1CD36D4F00C740A2 /* libsqlite3.tbd in Frameworks */,
 				363EBEA61CD3649E00C740A2 /* CoreLocation.framework in Frameworks */,
-				363EBE951CD3509300C740A2 /* Security.framework in Frameworks */,
 				363EBE9E1CD3647E00C740A2 /* MessageUI.framework in Frameworks */,
 				363EBE9C1CD3647400C740A2 /* MobileCoreServices.framework in Frameworks */,
 				363EBE8B1CD34B1000C740A2 /* CoreGraphics.framework in Frameworks */,
